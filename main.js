@@ -5,8 +5,13 @@ class main extends Phaser.Scene {
         super("mainGame");
     }
 
+    preload() {
+
+    }
+
     create() {
-        this.add.text(20, 20, "Playing the game rn")
+        
+        this.add.text(20, 20, "Playing the game rn");
 
     }
 
