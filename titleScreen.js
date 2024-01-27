@@ -10,7 +10,6 @@ class titleScreen extends Phaser.Scene {
         this.add.text(20, 20, "Loading game...")
         setTimeout(3000); // wait for 3 seconds
         this.scene.start("mainGame");
-
     }
 
 
