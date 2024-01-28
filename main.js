@@ -6,7 +6,6 @@ class main extends Phaser.Scene {
     }
 
     platforms;
-    ground;
     player;
     cursors;
 
@@ -19,10 +18,14 @@ class main extends Phaser.Scene {
 
     create() {
         this.cameras.main.setBounds(0, 0, 4000*2, 176)
+        const leftBoundary = this.physics.add.staticImage(0, 0, 'ground').setOrigin(0, 0).setScale(0.001, 176).refreshBody();
+
         for (let x = 0; x < 2; x++) {
-            this.add.image(4000*x, -175, "bg");
+            this.add.image(4000*x, -175, "bg").setOrigin(0.5);
         }
         this.player = this.physics.add.image(20, 565, "knight");
+
+        this.physics.add.collider(this.player, leftBoundary);
 
         // Keyboard Movement
         this.cursors = this.input.keyboard.createCursorKeys();   
@@ -46,15 +49,6 @@ class main extends Phaser.Scene {
             else if (this.cursors.right.isDown)
             {
                 cam.scrollX += 4;
-            }
-
-            if (this.cursors.up.isDown)
-            {
-                cam.scrollY -= 4;
-            }
-            else if (this.cursors.down.isDown)
-            {
-                cam.scrollY += 4;
             }
         }
         else
