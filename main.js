@@ -22,10 +22,12 @@ class main extends Phaser.Scene {
     preload() {
         // Load Images
         this.load.image("ground", "assets/platform.png");
-        this.load.image("bg", "assets/ringroad.png")
+        this.load.image("background", "assets/ringroad.png")
         this.load.spritesheet('player', 'assets/player.png', { frameWidth: 57, frameHeight: 99 });
         this.load.spritesheet('studentA', 'assets/studentA.png', { frameWidth: 57, frameHeight: 99 });
         this.load.spritesheet('studentB', 'assets/studentB.png', { frameWidth: 57, frameHeight: 99 });
+        this.load.spritesheet('studentC', 'assets/studentB.png', { frameWidth: 57, frameHeight: 99 });
+
 
         // Dialoge (Alison)
         this.load.image("bubble", "assets/speechbubble-S.png");
@@ -37,10 +39,12 @@ class main extends Phaser.Scene {
         const leftBoundary = this.physics.add.staticImage(0, 0, 'ground').setOrigin(0, 0).setScale(0.001, 176).refreshBody();
         this.cameras.main.setBounds(0, 0, 4000*2, 176)
         for (let x = 0; x < 2; x++) {
-            this.add.image(4000*x, -175, "bg");
+            this.add.image(4000*x, -175, "background");
         }
         this.player = this.physics.add.sprite(50, 550, "player");
         this.studentA = this.physics.add.sprite(2000, 550, "studentA");
+        this.studentB = this.physics.add.sprite(4000, 550, "studentB");
+        this.studentB = this.physics.add.sprite(6000, 550, "studentC");
         this.studentA.setPushable(false);
         this.studentA.setSize(100);
         this.physics.add.collider(this.player, leftBoundary);
@@ -107,9 +111,8 @@ class main extends Phaser.Scene {
         }
     }
 
-    deleteStudent (player, studentA) {
-        studentA.setVelocityX(0);
-        
+    deleteStudent (player, studentA) {   
+        playerA.setVelocity(0);     
         const textStyle = {
             //fontFamily: 'Press Start 2P',
             fontSize: '16px',
@@ -118,13 +121,13 @@ class main extends Phaser.Scene {
         };
 
         var NPC_Response = this.add.image(studentA.x + 100, studentA.y - 300, "bubble_mirror").setInteractive();
-        var text_responseNPC = this.add.text(studentA.x + 10, studentA.y - 300, 'hello', textStyle);
+        var text_responseNPC = this.add.text(studentA.x + 10, studentA.y - 325, 'hello', textStyle);
         var playerbubble1 = this.add.image(player.x - 100, player.y - 400, "bubble").setInteractive();
-        var text_pb1 = this.add.text(player.x - 150, player.y - 400, 'hello', textStyle);
+        var text_pb1 = this.add.text(player.x - 190, player.y - 425, 'hello', textStyle);
         var playerbubble2 = this.add.image(player.x - 100, player.y - 300, "bubble").setInteractive();
-        var text_pb2 = this.add.text(player.x - 150, player.y - 300, 'hello', textStyle);
+        var text_pb2 = this.add.text(player.x - 190, player.y - 325, 'hello', textStyle);
         var playerbubble3 = this.add.image(player.x - 100, player.y - 200, "bubble").setInteractive();
-        var text_pb3 = this.add.text(player.x - 150, player.y - 200, 'hello', textStyle);
+        var text_pb3 = this.add.text(player.x - 190, player.y - 225, 'hello', textStyle);
         this.loop = 0;
         NPC_Response.visible = false;
         text_pb1.visible = false;
@@ -165,7 +168,8 @@ class main extends Phaser.Scene {
                     NPC_Response.input.enabled = false;
                     playerbubble1.input.enabled = false;
                     playerbubble2.input.enabled = false;
-                    playerbubble3.input.enabled = false; 
+                    playerbubble3.input.enabled = false;
+                    studentA.disableBody(true, true);
                 }
                 
             });
