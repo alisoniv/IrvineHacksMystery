@@ -1,4 +1,3 @@
-//game config file
 
 var config = {
     type: Phaser.AUTO,
@@ -16,6 +15,3 @@ var config = {
 var moveCam = false;
 
 var game = new Phaser.Game(config);
-
-
-
