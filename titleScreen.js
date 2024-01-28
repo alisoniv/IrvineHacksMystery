@@ -19,7 +19,7 @@ class titleScreen extends Phaser.Scene {
         var titlescreenLogo = this.add.image(400, 200, "title");
         background.setInteractive();
         background.on('pointerdown', function() {
-            this.scene.start("mainGame");
+            this.scene.start("story");
         }, this);
         
     }
