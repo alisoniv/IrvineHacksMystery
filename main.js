@@ -75,6 +75,7 @@ class main extends Phaser.Scene {
                     playerbubble1.input.enabled = false;
                     playerbubble2.input.enabled = false;
                     playerbubble3.input.enabled = false; 
+                    this.scene.start("endGame");
                 }
                 
             });

@@ -6,7 +6,6 @@ class storyScreen extends Phaser.Scene {
     preload() {
         this.load.image("bg", "assets/background1.png");
         this.load.image("title", "assets/titlelogo.png");
-        this.load.image("smile", "assets/smiley.png");
         this.load.bitmapFont("PixelRound", "./assets/font/round_6x6.png", "./assets/font/round_6x6.xml");
 
     }
