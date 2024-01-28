@@ -9,7 +9,7 @@ var config = {
             debug: false
         }
     },
-    scene: [titleScreen, main]
+    scene: [titleScreen, main, endingScreen]
 }
 
 var moveCam = false;
