@@ -21,11 +21,11 @@ class main extends Phaser.Scene {
 
     preload() {
         // Load Images
-        this.load.image("ground", "assests/platform.png");
-        this.load.image("bg", "assests/ringroad.png")
-        this.load.spritesheet('player', 'assests/player.png', { frameWidth: 57, frameHeight: 99 });
-        this.load.spritesheet('studentA', 'assests/studentA.png', { frameWidth: 57, frameHeight: 99 });
-        this.load.spritesheet('studentB', 'assests/studentB.png', { frameWidth: 57, frameHeight: 99 });
+        this.load.image("ground", "assets/platform.png");
+        this.load.image("bg", "assets/ringroad.png")
+        this.load.spritesheet('player', 'assets/player.png', { frameWidth: 57, frameHeight: 99 });
+        this.load.spritesheet('studentA', 'assets/studentA.png', { frameWidth: 57, frameHeight: 99 });
+        this.load.spritesheet('studentB', 'assets/studentB.png', { frameWidth: 57, frameHeight: 99 });
 
         // Dialoge (Alison)
         this.load.image("bubble", "assets/speechbubble-S.png");
@@ -34,6 +34,67 @@ class main extends Phaser.Scene {
     }
 
     create() {
+        const textStyle = {
+            fontFamily: 'Press Start 2P',
+            fontSize: '16px',
+            color: '#000000',
+            wordWrap: { width: 200, useAdvancedWrap: true } // Set the width for word wrapping
+        };
+
+        var NPC_Response = this.add.image(2000, -175, "bubble").setInteractive();
+        var text_responseNPC = this.add.text(50, 275, 'hello', textStyle);
+        var playerbubble1 = this.add.image(200,300, "bubble_mirror").setInteractive();
+        var text_pb1 = this.add.text(100, 275, 'hello', textStyle);
+        var playerbubble2 = this.add.image(200,400, "bubble_mirror").setInteractive();
+        var text_pb2 = this.add.text(100, 375, 'hello', textStyle);
+        var playerbubble3 = this.add.image(200,500, "bubble_mirror").setInteractive();
+        var text_pb3 = this.add.text(100, 475, 'hello', textStyle);
+        this.loop = 0;
+        NPC_Response.visible = false;
+        text_pb1.visible = false;
+        text_pb2.visible = false;
+        text_pb3.visible = false;
+        playerbubble1.visible = false;
+        playerbubble2.visible = false;
+        playerbubble3.visible = false;
+
+        //initialize button listeners
+        [playerbubble1, playerbubble2, playerbubble3].forEach((image) => {
+            image.on('pointerdown', () => {
+                
+                if (this.loop < this.dialogueArray.length){
+                    text_pb3.visible = false;
+                    playerbubble3.visible = false;
+                    text_responseNPC.setText(this.dialogueArray[this.loop][0]);
+                    text_pb1.setText(this.dialogueArray[this.loop][1]);
+                    playerbubble2.visible = true;
+                    text_pb2.setText(this.dialogueArray[this.loop][2]);   
+
+                    if (this.dialogueArray[this.loop].length == 4){
+                        playerbubble3.visible = true;
+                        text_pb3.visible = true;
+                        text_pb3.setText(this.dialogueArray[this.loop][3]); 
+                    }
+                    this.loop = this.loop + 1;
+                }
+                else {
+                    //dialogue ends, remove everything on screen
+                    NPC_Response.visible = false;
+                    text_pb1.visible = false;
+                    text_pb2.visible = false;
+                    text_pb3.visible = false;
+                    playerbubble1.visible = false;
+                    playerbubble2.visible = false;
+                    playerbubble3.visible = false;
+                    NPC_Response.input.enabled = false;
+                    playerbubble1.input.enabled = false;
+                    playerbubble2.input.enabled = false;
+                    playerbubble3.input.enabled = false; 
+                }
+                
+            });
+        });
+
         const leftBoundary = this.physics.add.staticImage(0, 0, 'ground').setOrigin(0, 0).setScale(0.001, 176).refreshBody();
         this.cameras.main.setBounds(0, 0, 4000*2, 176)
         for (let x = 0; x < 2; x++) {
@@ -123,6 +184,8 @@ class main extends Phaser.Scene {
     }
 
     deleteStudent (player, studentA) {
+        studentA.disableBody(true, true);
+
         const textStyle = {
             fontFamily: 'Press Start 2P',
             fontSize: '16px',
@@ -130,8 +193,8 @@ class main extends Phaser.Scene {
             wordWrap: { width: 200, useAdvancedWrap: true } // Set the width for word wrapping
         };
 
-        var NPC_Response = this.add.image(500, 300, "bubble").setInteractive();
-        var text_responseNPC = this.add.text(400, 275, 'hello', textStyle);
+        var NPC_Response = this.add.image(2000, -175, "bubble").setInteractive();
+        var text_responseNPC = this.add.text(50, 275, 'hello', textStyle);
         var playerbubble1 = this.add.image(200,300, "bubble_mirror").setInteractive();
         var text_pb1 = this.add.text(100, 275, 'hello', textStyle);
         var playerbubble2 = this.add.image(200,400, "bubble_mirror").setInteractive();
@@ -147,6 +210,43 @@ class main extends Phaser.Scene {
         playerbubble2.visible = false;
         playerbubble3.visible = false;
 
+        //initialize button listeners
+        [playerbubble1, playerbubble2, playerbubble3].forEach((image) => {
+            image.on('pointerdown', () => {
+                
+                if (this.loop < this.dialogueArray.length){
+                    text_pb3.visible = false;
+                    playerbubble3.visible = false;
+                    text_responseNPC.setText(this.dialogueArray[this.loop][0]);
+                    text_pb1.setText(this.dialogueArray[this.loop][1]);
+                    playerbubble2.visible = true;
+                    text_pb2.setText(this.dialogueArray[this.loop][2]);   
+
+                    if (this.dialogueArray[this.loop].length == 4){
+                        playerbubble3.visible = true;
+                        text_pb3.visible = true;
+                        text_pb3.setText(this.dialogueArray[this.loop][3]); 
+                    }
+                    this.loop = this.loop + 1;
+                }
+                else {
+                    //dialogue ends, remove everything on screen
+                    NPC_Response.visible = false;
+                    text_pb1.visible = false;
+                    text_pb2.visible = false;
+                    text_pb3.visible = false;
+                    playerbubble1.visible = false;
+                    playerbubble2.visible = false;
+                    playerbubble3.visible = false;
+                    NPC_Response.input.enabled = false;
+                    playerbubble1.input.enabled = false;
+                    playerbubble2.input.enabled = false;
+                    playerbubble3.input.enabled = false; 
+                }
+                
+            });
+        });
+        
         //initialize button listeners
         [playerbubble1, playerbubble2, playerbubble3].forEach((image) => {
             image.on('pointerdown', () => {
