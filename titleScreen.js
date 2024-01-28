@@ -6,15 +6,19 @@ class titleScreen extends Phaser.Scene {
         super("bootGame");
     }
     preload() {
+        this.load.image("bg", "assets/background1.png");
+        this.load.image("title", "assets/titlelogo.png");
         this.load.image("smile", "assets/smiley.png");
+        this.load.bitmapFont("PixelRound", "./assets/font/round_6x6.png", "./assets/font/round_6x6.xml");
 
     }
 
     create() {
-        this.add.text(20, 20, "Loading game...")
-        var image = this.add.image(250, 250, "smile");
-        image.setInteractive();
-        image.on('pointerdown', function() {
+        var background = this.add.image(250, 250, "bg");
+        this.add.bitmapText(300, 300,'PixelRound', 'Click to Play', 32);
+        var titlescreenLogo = this.add.image(400, 200, "title");
+        background.setInteractive();
+        background.on('pointerdown', function() {
             this.scene.start("mainGame");
         }, this);
         

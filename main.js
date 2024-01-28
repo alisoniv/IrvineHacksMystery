@@ -15,19 +15,19 @@ class main extends Phaser.Scene {
     preload() {
         this.load.image("bubble", "assets/speechbubble-S.png");
         this.load.image("bubble_mirror", "assets/speechbubble-Smirror.png");
-        this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+        this.load.bitmapFont("PixelRound", "./assets/font/round_6x6.png", "./assets/font/round_6x6.xml");
     }
 
     create() {
         //initialize text bubbles and boxes  
         const textStyle = {
-            fontFamily: 'Press Start 2P',
+            //fontFamily: 'Press Start 2P',
             fontSize: '16px',
             color: '#000000',
             wordWrap: { width: 200, useAdvancedWrap: true } // Set the width for word wrapping
         };
         var NPC_Response = this.add.image(500, 300, "bubble").setInteractive();
-        var text_responseNPC = this.add.text(400, 275, 'hello', textStyle);
+        var text_responseNPC = this.add.bitmapText(500, 275,'PixelRound', 'hello', 16); //
         var playerbubble1 = this.add.image(200,300, "bubble_mirror").setInteractive();
         var text_pb1 = this.add.text(100, 275, 'hello', textStyle);
         var playerbubble2 = this.add.image(200,400, "bubble_mirror").setInteractive();
