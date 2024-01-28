@@ -6,7 +6,7 @@ class titleScreen extends Phaser.Scene {
         super("bootGame");
     }
     preload() {
-        this.load.image("smile", "assests/smiley.png");
+        this.load.image("smile", "assets/smiley.png");
 
     }
 

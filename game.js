@@ -1,4 +1,3 @@
-//game config file
 
 
 var config = {
@@ -10,6 +9,3 @@ var config = {
 }
 
 var game = new Phaser.Game(config);
-
-
-
