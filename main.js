@@ -5,29 +5,29 @@ class main extends Phaser.Scene {
     constructor() {
         super("mainGame");
         this.loop = 0;
-        this.dialogueArray =[["Hello, I am an NPC!", "Hello NPC how are you", "Hello NPC How is it going?", "Sup bro?"],
-                        ["I am doing excellent. What are you doing here?", "I'm trying to find my suit", "looking for a suit"],
-                        ["Thanks for the talk.", "bye", "cya"],
-                        ["wait!", "What?", "Wut do you wnat", "huh?"]
+        this.dialogueArray =[["It's a nice day today!", "It is! How was your day.", "What have you been up to?"],
+                        ["I was studying in Langson from 9 to 11 am", "What were you doing after that?", "That's it!?!?"],
+                        ["Well, after that I got lunch", "Did you see anyone else around?", "Anything else you'd like to tell me?!?"],
+                        ["Now that you mention it, I did see Sarah running past the library while I was studying ", "Thanks for your help", "Have a good day"]
                         ];
     }
 
     preload() {
         this.load.image("bubble", "assets/speechbubble-S.png");
         this.load.image("bubble_mirror", "assets/speechbubble-Smirror.png");
-        this.load.bitmapFont("PixelRound", "./assets/font/round_6x6.png", "./assets/font/round_6x6.xml");
+        //this.load.bitmapFont("PixelRound", "./assets/font/round_6x6.png", "./assets/font/round_6x6.xml");
     }
 
     create() {
         //initialize text bubbles and boxes  
         const textStyle = {
-            //fontFamily: 'Press Start 2P',
+            fontFamily: 'Arial',
             fontSize: '16px',
             color: '#000000',
             wordWrap: { width: 200, useAdvancedWrap: true } // Set the width for word wrapping
         };
         var NPC_Response = this.add.image(500, 300, "bubble").setInteractive();
-        var text_responseNPC = this.add.bitmapText(500, 275,'PixelRound', 'hello', 16); //
+        var text_responseNPC = this.add.text(400, 265, 'hello', textStyle);
         var playerbubble1 = this.add.image(200,300, "bubble_mirror").setInteractive();
         var text_pb1 = this.add.text(100, 275, 'hello', textStyle);
         var playerbubble2 = this.add.image(200,400, "bubble_mirror").setInteractive();

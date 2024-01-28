@@ -16,7 +16,7 @@ class storyScreen extends Phaser.Scene {
         let storytext2 = "You are expected to be there to hype up";
         let storytext2_5 = "the crowd and show your UCI Pride.";
         let storytext3 = "ZOT ZOT ZOT!!";
-        let storytext3_5 = "At four PM today, your Mascot costume was stolen!!";
+        let storytext3_5 = "At ten AM today, your Mascot costume was stolen!!";
         let storytext4 = "Now you must travel inner ring road, find the culprit,";
         let storytext4_5 = "and get your costume back before its too late. ";
         let storytext5 = "Ask around, and try to see if anyone";
