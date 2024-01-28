@@ -16,8 +16,12 @@ class endingScreen extends Phaser.Scene {
         var nick_image = this.add.image(250, 250, "nick");
         var sarah_image = this.add.image(400, 250, "sarah");
         var jane_image = this.add.image(550, 250, "jane");
+        this.add.bitmapText(220, 150,'PixelRound', 'Nick', 32);
+        this.add.bitmapText(360, 150,'PixelRound', 'Sarah', 32);
+        this.add.bitmapText(520, 150,'PixelRound', 'Jane', 32);
         
-        this.add.bitmapText(220, 400,'PixelRound', 'So.. Who is the culprit?', 32).setInteractive();
+        
+        this.add.bitmapText(230, 400,'PixelRound', 'So.. Who is the culprit?', 32).setInteractive();
         var prompt = this.add.bitmapText(220, 550,'PixelRound', 'Click here to play again', 32).setInteractive();
         prompt.visible = false;
         this.click = 0;
@@ -28,14 +32,14 @@ class endingScreen extends Phaser.Scene {
 
         nick_image.on('pointerdown', function() {
             if (this.click == 0){
-            this.add.bitmapText(300, 450,'PixelRound', 'Wrong, GAME OVER', 32);
+            this.add.bitmapText(280, 450,'PixelRound', 'Wrong, GAME OVER', 32);
             prompt.visible = true;
             this.click = this.click + 1;
         }
         }, this);
         sarah_image.on('pointerdown', function() {
             if (this.click == 0){
-            this.add.bitmapText(300, 450,'PixelRound', 'Correct, You win!!', 32);
+            this.add.bitmapText(280, 450,'PixelRound', 'Correct, You win!!', 32);
             prompt.visible = true;
             this.click = this.click + 1;
             }
@@ -43,7 +47,7 @@ class endingScreen extends Phaser.Scene {
     
         jane_image.on('pointerdown', function() {
             if (this.click == 0){
-            this.add.bitmapText(300, 450,'PixelRound', 'Wrong, GAME OVER', 32);
+            this.add.bitmapText(280, 450,'PixelRound', 'Wrong, GAME OVER', 32);
             prompt.visible = true;
             this.click = this.click + 1;
         }
